@@ -9,6 +9,8 @@
 [![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](LICENSE)
 
 </div>
+As part of our efforts to advance the development of ChatGPT-style models, we leveraged **DeepSpeed Chat** to streamline and accelerate our work. DeepSpeed Chat offers an integrated system framework for training ChatGPT-like models end-to-end, which was crucial for our research. By using this platform, we were able to seamlessly take a pre-trained large language model and fine-tune it through an OpenAI InstructGPT-style process, producing high-quality models tailored for medical applications like radiology impression generation.[](https://)
+
 As part of our efforts to advance the development of ChatGPT-style models, we leveraged **DeepSpeed Chat** to streamline and accelerate our work. DeepSpeed Chat offers an integrated system framework for training ChatGPT-like models end-to-end, which was crucial for our research. By using this platform, we were able to seamlessly take a pre-trained large language model and fine-tune it through an OpenAI InstructGPT-style process, producing high-quality models tailored for medical applications like radiology impression generation.
 
 <div align="center">
@@ -75,60 +77,44 @@ For those with limited time, it's feasible to train a smaller model using DeepSp
 python train.py --actor-model facebook/opt-1.3b --reward-model facebook/opt-350m --deployment-type single_gpu
 ```
 
-The table below provides a breakdown of the end-to-end time for training a 1.3 billion parameter ChatGPT model via DeepSpeed-Chat on a single NVIDIA A6000 GPU with 48GB memory:
-
-| Model Size (A6000-48G)           | Step 1   | Step 2  | Step 3 | Total |
-| -------------------------------- | -------- | ------- | ------ | ----- |
-| Actor: OPT-1.3B Reward: OPT-350M | 2900 Sec | 670 Sec | 1.2hr  | 2.2hr |
-
-&nbsp;&nbsp;**DeepSpeed-Chat's RLHF Example 2: Half-Day Training on a Single Commodity GPU Node for a 13B ChatGPT Model**
-
 For those with approximately half a day and access to a single server node, we suggest using a pre-trained \*\*OPT-13B\*\* as the actor model and OPT-350M as the reward model. The following script facilitates the generation of a final 13B ChatGPT-style model:
 
 ```bash
 python train.py --actor-model facebook/opt-13b --reward-model facebook/opt-350m --deployment-type single_node
 ```
 
-The table below provides a breakdown of the end-to-end time for training a 13 billion parameter ChatGPT model via DeepSpeed-Chat on a single DGX node with 8 NVIDIA A100-40G GPUs:
-
-| Model Size (A100-40G)           | Step 1 | Step 2 | Step 3 | Total  |
-| ------------------------------- | ------ | ------ | ------ | ------ |
-| Actor: OPT-13B Reward: OPT-350M | 2.5hr  | 0.25hr | 10.8hr | 13.6hr |
-
-&nbsp;&nbsp;**DeepSpeed-Chat’s RLHF Example 3: Cost-Effective Cloud Training for a Larger 66B ChatGPT Model**
-
-For those interested in experimenting with different model sizes and configurations, DeepSpeed-Chat offers flexibility. For instance, with access to multi-node clusters or cloud resources, it's possible to train a larger and higher-quality model for research or business purposes. The following script can be used for a \*\*66B\*\* model with 64 GPUs:
-
-```bash
-python train.py --actor-model facebook/opt-66b --reward-model facebook/opt-350m --deployment-type multi_node
-```
-
-The table below provides a breakdown of the end-to-end time for training a 66 billion parameter ChatGPT model via DeepSpeed-Chat on 8 DGX nodes with 8 NVIDIA A100-80G GPUs per node:
-
-| Model Size (A100-80g)           | Step 1 | Step 2 | Step 3 | Total |
-| ------------------------------- | ------ | ------ | ------ | ----- |
-| Actor: OPT-66B Reward: OPT-350M | 82mins | 5mins  | 7.5hr  | 9hr   |
-
-For your detailed budgeting for training a wide spectrum of model sizes on potentially available computing resources (e.g., Microsoft Azure), please visit [Training Performance Evaluation](#-training-performance-evaluation-).
-
-### 🐼 Demonstration: Individual Step Fine-Tuning
+### Demonstration: Individual Step Fine-Tuning
 
 The train.py script has an easy-to-use command-line interface and can be launched with several arguments including model type, model size, and number of GPUs to run. Considering users who would like to use DeepSpeed-Chat to only fine-tune their pretrained models in Step 1 or 2, or just use their own actor and reward model checkpoints directly to perform Step 3 in our RLHF pipeline, DeepSpeed-Chat provides greater configurability and flexibility to accommodate individual step fine-tuning:
 
-#### 🕐 Step 1 - [Supervised Fine-Tuning](./training/step1_supervised_finetuning)
+#### Step 1 - [Supervised Fine-Tuning](./training/step1_supervised_finetuning)
+
+In our study, we leverage the pretrained model as follow:
+
+| Pretrained Models | Parameter Size | Huggingface Model Link                        |
+| ----------------- | -------------- | --------------------------------------------- |
+| Bloomz-560m       | 559M params    | https://huggingface.co/bigscience/bloomz-560m |
+| Bloomz-1b1        | 1.07B params   | https://huggingface.co/bigscience/bloomz-1b1  |
+| Bloomz-3b         | 3B params      | https://huggingface.co/bigscience/bloomz-3b   |
+| Bloomz-7b1        | 7.07B params   | https://huggingface.co/bigscience/bloomz-7b1  |
 
 ```bash
+
 # Move into the first step of the pipeline
+
 cd training/step1_supervised_finetuning/
 
 # Run the training script
+
 bash training_scripts/single_gpu/run_1.3b.sh
 
 # Evaluate the model
+
 bash evaluation_scripts/run_prompt.sh
+
 ```
 
-#### 🕑 Step 2 - [Reward Model](./training/step2_reward_model_finetuning)
+#### Step 2 - [Reward Model](./training/step2_reward_model_finetuning)
 
 ```bash
 # Move into the second step of the pipeline
@@ -141,7 +127,7 @@ bash training_scripts/run_350m.sh
 bash evaluation_scripts/run_eval.sh
 ```
 
-#### 🕒 Step 3 - [Reinforcement Learning with Human Feedback](./training/step3_rlhf_finetuning)
+#### Step 3 - [Reinforcement Learning with Human Feedback](./training/step3_rlhf_finetuning)
 
 <p align="center">
 
