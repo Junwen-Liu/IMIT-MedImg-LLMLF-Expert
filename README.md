@@ -1,3 +1,9 @@
-# IMIT-MedImg-LLMLF-Expert
+# IMIT-MedImg-LLMLF-Expert [[GitHub](https://github.com/Junwen-Liu/IMIT-MedImg-LLMLF-Expert)/[Hugging Face](https://huggingface.co/IMIT-MedImg/IMIT-MedImg-LLMLF-Expert)]
 
-We will make public everything on [GitHub](https://github.com/Junwen-Liu/IMIT-MedImg-LLMLF-Expert) and [Hugging Face](https://huggingface.co/IMIT-MedImg/IMIT-MedImg-LLMLF-Expert) after the paper is accepted. To request access, please email Ljwb5009@rjh.com.cn, stating your identity and intended use of the models. Once approved, we will send you the inference code and data examples, and grant you access to the Hugging Face [pretrained models](https://huggingface.co/IMIT-MedImg/IMIT-MedImg-LLMLF-Expert/tree/main) using the same email address.
+Training codes are in the `Training` folder.
+
+Inference codes are in the `Inference` folder.
+
+To deploy our websites, check the `Supporting Websites` folder.
+
+Feel free to reach out via email at <ljwb5009@rjh.com.cn>.
