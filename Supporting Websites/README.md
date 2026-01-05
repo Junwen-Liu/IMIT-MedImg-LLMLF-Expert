@@ -1,36 +1,42 @@
-# Website Deployment Guide
+# Supporting Websites
 
-We are in the process of preparing some dummy datasets in a MongoDB database for seamless integration with the websites. Once ready, we will upload them to this repository. Please stay updated on this page, and feel free to reach out via email at <ljwb5009@rjh.com.cn> for any urgent or special requests.
+This folder contains 4 web applications used in the research for data collection, annotation, and evaluation.
 
-- Install [MongoDB and MongoDB Compass](https://www.mongodb.com/try/download/community).
+> **Note:** Dummy datasets for MongoDB are being prepared. Contact <ljwb5009@rjh.com.cn> for urgent requests.
 
-- Install [Node.js and npm](https://nodejs.org/en/download/).
+## Prerequisites
 
-- Start MongoDB Compass.
-  - Add a new connection, set to `localhost:27017`.
+- [MongoDB Community Edition](https://www.mongodb.com/try/download/community) with MongoDB Compass
+- [Node.js and npm](https://nodejs.org/en/download/)
 
-  - Create a database named `IMIT_Img_Reports_news` under the connection and create 6 collections under the database, named as the following:
-    - `counters`
-    - `prosp_records`
-    - `real_imgs_reports`
-    - `test_img_reports`
-    - `test_img_reports_upt2s`
-    - `users`
+## Database Setup
 
-  - Create a database named `IMIT_Img_Reports_testing` under the connection and create 2 collections under the database, named as the following:
-    - `real_imgs_reports`
-    - `users`
+1. Start MongoDB Compass and connect to `localhost:27017`
 
-  - Create a database named `IMIT_multi_center_reports` under the connection and create 4 collections under the database, named as the following:
-    - `multicenter_reports`
-    - `multicenter_reports_news`
-    - `test_img_reports_upt2s`
-    - `users`
+2. Create the following databases and collections:
 
-  - *Note that the above databases are empty, but it should not interfere with the website deployment. Once our dummy datasets are ready, we will upload the json files, and you can upload them to the corresponding collections.*
+| Database | Collections |
+| -------- | ----------- |
+| `IMIT_Img_Reports_news` | `counters`, `prosp_records`, `real_imgs_reports`, `test_img_reports`, `test_img_reports_upt2s`, `users` |
+| `IMIT_Img_Reports_testing` | `real_imgs_reports`, `users` |
+| `IMIT_multi_center_reports` | `multicenter_reports`, `multicenter_reports_news`, `test_img_reports_upt2s`, `users` |
 
-- Run `npm install –legacy-peer-deps` in the frontend and backend folders of all 4 websites.
+> Collections can be empty initially. Import JSON data files when available.
 
-- Run `npm start` in all frontend and backend folders.
+## Installation & Running
 
-- Once you have launched these websites, you can check the user guides in the `screenshots` folder.
+For each website folder:
+
+```bash
+# Install dependencies
+cd frontend && npm install --legacy-peer-deps
+cd ../backend && npm install --legacy-peer-deps
+
+# Start servers (in separate terminals)
+cd frontend && npm start
+cd backend && npm start
+```
+
+## User Guides
+
+See the `screenshots` folder for detailed usage instructions for each website.
