@@ -90,17 +90,6 @@ Download from [Hugging Face](https://huggingface.co/IMIT-MedImg/IMIT-MedImg-LLML
 | Epochs | 16 | — |
 | Hardware | 8× NVIDIA A100 (40GB) | 8× NVIDIA A100 (40GB) |
 
-## 📄 Citation
-
-```bibtex
-@article{liu2025expertspecific,
-  title={Expert-Specific Large Language Models for Radiology: Achieving Clinical-Grade Performance with Small Datasets},
-  author={Liu, Junwen and Zhang, Zheyu and Xiao, Jifeng and others},
-  journal={The Lancet Digital Health},
-  year={2025},
-  publisher={Elsevier}
-}
-```
 
 ## 📜 License
 
@@ -110,10 +99,3 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 - [DeepSpeed-Chat](https://github.com/microsoft/DeepSpeedExamples/tree/master/applications/DeepSpeed-Chat) for the RLHF training framework
 - [BLOOMZ](https://huggingface.co/bigscience/bloomz) for the base language models
-
-## 📧 Contact
-
-For questions or collaborations, please contact:
-- **Junwen Liu** - ljwb5009@rjh.com.cn
-- **Ning Wen, PhD** - wn12479@rjh.com.cn
-- Department of Radiology, Ruijin Hospital, Shanghai Jiao Tong University School of Medicine
