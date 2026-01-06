@@ -4,7 +4,7 @@
 [![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](LICENSE)
 [![Models](https://img.shields.io/badge/🤗%20Hugging%20Face-Models-yellow)](https://huggingface.co/IMIT-MedImg/IMIT-MedImg-LLMLF-Expert)
 
-Official implementation of **"Expert-Specific Large Language Models for Radiology: Achieving Clinical-Grade Performance with Small Datasets"** published in *The Lancet Digital Health*.
+Official implementation of **"Expert-Specific Large Language Models for Radiology: Achieving Clinical-Grade Performance with Small Datasets"** submitted to *The Lancet Digital Health*.
 
 ## 🎯 Key Findings
 
